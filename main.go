@@ -64,6 +64,7 @@ func filterPcap(file string) []gopacket.Packet {
 		fmt.Printf("couldn't open pcap %s, %s", file, err)
 		return []gopacket.Packet{}
 	}
+	defer handle.Close()
 
 	var packets []gopacket.Packet
 	packetSource := gopacket.NewPacketSource(handle, handle.LinkType())
