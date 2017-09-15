@@ -28,7 +28,7 @@ func main() {
 
 	files, err := ioutil.ReadDir(*path)
 	if err != nil {
-		fmt.Errorf("Cant read dir %s", *path)
+		fmt.Printf("Cant read dir %s", *path)
 		// do something
 	}
 
@@ -59,10 +59,10 @@ func main() {
 }
 
 func filterPcap(file string) []gopacket.Packet {
-	//TODO: Check if file exists
 	handle, err := pcap.OpenOffline(file)
 	if err != nil {
-		fmt.Errorf("couldn't open pcap", err)
+		fmt.Printf("couldn't open pcap %s, %s", file, err)
+		return []gopacket.Packet{}
 	}
 
 	var packets []gopacket.Packet
